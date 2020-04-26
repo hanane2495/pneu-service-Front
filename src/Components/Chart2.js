@@ -8,6 +8,7 @@ const Chart2 = () => {
         chart: {
             width: '50%',
             type: 'pie',
+            foreColor:'#777',
           },
           labels: ["Pneus Auto", "Pneus Moto", "Pneu Poids lourds"],
           theme: {
@@ -49,6 +50,7 @@ const Chart2 = () => {
            options={options}
            series={series}
            type="pie" 
+           height={200}
         />
     )
 }

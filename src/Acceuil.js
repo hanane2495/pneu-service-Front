@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Card, Container } from "react-bootstrap";
 
 //components
-import Sidebar from './Components/Sidebar';
-import Navbar from './Components/Navbar';
 import Chart1 from './Components/Chart1'
 import Chart2 from "./Components/Chart2";
 import Chart3 from "./Components/Chart3";
+import Aside from './Components/Aside';
 
 
 const Styles = styled.div`
@@ -17,30 +16,35 @@ const Styles = styled.div`
     display: grid;
     height:100%;
     grid-template-areas:
-        'title title'
-        'chart-1 chart-1'
-        'chart-2 chart-3';
-     grid-template-rows: 10% 50% 40%;
-     grid-template-columns: 40% 60%;
+        'chart-1 chart-1 aside'
+        'chart-2 chart-3 aside';
+     grid-template-rows: 60% 40%;
+     grid-template-columns: 40% 40% 20%;
      padding:1% 1% 1% 2% ;
      transition:0.9s;
   }
-  .titre{
-    grid-area: title;
-    justify-content:center;
-    justify-items:center;
-    align-items:center;
-    padding:0 1.5%;
-    padding-left:0;
-  }
+  .main-toggled{
+      height: 100vh;
+      display: grid;
+      justify-self:center;
+      grid-template-areas:
+        'asideLeft nav nav'
+        'asideLeft main asideRight';
+     grid-template-rows: 60% 40%;
+     grid-template-columns: 40% 40% 20%;
+     transition:  0.9s ;
+    -moz-transition:  0.9s ; /* Firefox 4 */
+    -webkit-transition: 0.9s ; /* Safari 和 Chrome */
+    -o-transition: 0.9s ; /* Opera */
+     background:#fff;
+     }
+  
   .graphique-1{
     grid-area: chart-1;
     justify-content:center;
     justify-items:center;
     align-items:center;
-    padding: 1.5%;
-    padding-left:0;
-
+    padding: 0 1% 1% 0;
   }
   .graphique-2{
     grid-area: chart-2;
@@ -64,19 +68,37 @@ const Styles = styled.div`
       border-radius:10px;
       box-shadow:5px 10px 20px 1px rgba(0, 0, 0, 0.153);
   }
+  .aside{
+    grid-area: aside;
+    height:100%;
+  }   
 `;
 
 
-const Dashboard = () => {
+
+
+const Dashboard = (props) => {
+    const mainToggle = (toggle) => {
+        setToggleMain(!toggleMain)
+        console.log('main toggle clicked');
+        const Mygrid = document.getElementById('acceuil-grid');
+        console.log(Mygrid.className)
+        
+        if(Mygrid.className ==='home-layout' ){
+          Mygrid.classList.replace('home-layout','main-toggled');
+          console.log(Mygrid.className)
+        }else{
+          Mygrid.classList.replace('main-toggled' ,'home-layout');
+          console.log(Mygrid.className)
+      }
+      
+      }
+    const [toggleMain, setToggleMain] = useState(false)
+
     return(
         <React.Fragment>
             <Styles>
-                <div className='home-layout'>
-                    <div className='titre'>
-                       <Card className='card-graphique'>
-                            <p style={{fontSize:'2rem', fontWeight:'500', color:'#999', marginLeft:'2%'}}>Acceuil</p>
-                        </Card>
-                    </div>
+                <div className='home-layout' id='acceuil-grid'>
                     <div className='graphique-1'>
                         <Card className='card-graphique'>
                             <Chart1/>
@@ -92,8 +114,11 @@ const Dashboard = () => {
                             <Chart3/>
                         </Card>
                     </div>
-
+                    <div className='aside'>
+                        <Aside mainClosed={props.closed}/>
+                    </div>
                 </div>
+                
             </Styles>
         </React.Fragment>
         

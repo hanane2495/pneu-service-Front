@@ -1,21 +1,14 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import {OverlayTrigger, Tooltip} from 'react-bootstrap';
-import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import styled from 'styled-components';
 
 //icons 
-import { FaHome, FaChartBar, FaShoppingCart, FaTruck, FaWarehouse, FaSitemap, FaBullhorn } from 'react-icons/fa';
+import { FaHome, FaShoppingCart, FaTruck, FaBullhorn } from 'react-icons/fa';
 import { GiCarWheel } from "react-icons/gi";
-import { FiDownload } from "react-icons/fi";
-import { GiAutoRepair, GiHamburgerMenu } from "react-icons/gi";
+import { GiAutoRepair } from "react-icons/gi";
 import { AiOutlineLogout } from "react-icons/ai";
 
-
-
-
-//images
-import background from '../assets/background1.jpg'
 
 const Styles = styled.div`
 .selected{

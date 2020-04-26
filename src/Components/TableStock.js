@@ -16,38 +16,29 @@ import Search from "@material-ui/icons/Search"
  import ClearIcon from '@material-ui/icons/Clear';
  import SaveIcon from '@material-ui/icons/Save';
 
-const TableCommande = () => {
+const TableStock = () => {
     const [state, setState] = React.useState({
         columns: [
-          { title: 'Code', field: 'code' },
-          { title: 'Client', field: 'client' },
-          { title: 'Montant (Da)', field: 'montant', type: 'numeric' },
-          { title: 'Produits [code]', field: 'produits' },
+          { title: 'ID supplier', field: 'code_fournisseur' },
+          { title: 'Designation', field: 'designation' },
+          { title: 'Prix', field: 'prix' },
           { title: 'Qt', field: 'qt' },
-          { title: 'Etat', field: 'etat', lookup: { 34: 'livree', 63: 'en attente' }},
 
         ],
         data: [
-          { code: 'cc6225', client: 'Baran', montant: 16000, produits: '195R14C, 195R14C, 195R14C', qt:4, etat:63 },
-          { code: 'cc6225', client: 'Baran', montant: 16000, produits: '195R14C, 195R14C, 195R14C', qt:4, etat:63},
-          { code: 'cc6225', client: 'Baran', montant: 16000, produits: '195R14C, 195R14C, 195R14C', qt:4, etat:63 },
-          { code: 'cc6225', client: 'Baran', montant: 16000, produits: '195R14C, 195R14C, 195R14C', qt:4, etat:63 },
-          { code: 'cc6225', client: 'Baran', montant: 16000, produits: '195R14C, 195R14C, 195R14C', qt:4, etat:34 },
-          { code: 'cc6225', client: 'Baran', montant: 16000, produits: '195R14C, 195R14C, 195R14C', qt:4, etat:34 },
-          {
-            code: 'cc6225',
-            client: 'Baran',
-            montant: 16000,
-            produits: '195R14C, 195R14C, 195R14C',
-            qt:4,
-            etat:34
-          },
+          { code_fournisseur: '10.516SW', designation: 'Michelin Latitude Sport 3 275/45 R19 108Y', prix: 16000, qt: '0' },
+          { code_fournisseur: '100020M', designation: 'Hifly HF201 185/55 R15 82V', prix: 16000, qt: '40'},
+          { code_fournisseur: 'cc6225', designation: 'Cooper CS2 175/70 R14 84T', prix: 16000, qt: '28' },
+          { code_fournisseur: '10.516SW', designation: 'Michelin Latitude Sport 3 275/45 R19 108Y', prix: 16000, qt: '30' },
+          { code_fournisseur: 'cc6225', designation: 'Michelin XL 12.5R20 139G', prix: 16000, qt: '0' },
+          { code_fournisseur: '100020M', designation: 'Hifly HF201 185/55 R15 82V', prix: 16000, qt: '46' },
+          
         ],
       });
       return (
         <MaterialTable
           style={{width:'100%', height:'100%'}}
-          title="Liste des commandes"
+          title=""
           icons={{
             Check: () => <Check />,
             Export: () => <SaveAlt />,
@@ -90,9 +81,6 @@ const TableCommande = () => {
             actionsColumnIndex: -1,
             selection: true
           }}
-          components={{
-            Container: props => <div style={{background: 'none'}}>{props.children}</div>
-            }}
           editable={{
             onRowAdd: (newData) =>
               new Promise((resolve) => {
@@ -134,4 +122,4 @@ const TableCommande = () => {
     );
 
 }      
-export default TableCommande;
+export default TableStock;

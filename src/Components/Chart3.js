@@ -9,6 +9,7 @@ const Chart3 = () => {
             height: '50%',
             width:'70%',
             type: 'bar',
+            foreColor:'#777',
             events: {
               click: function(chart, w, e) {
                 // console.log(chart, w, e)

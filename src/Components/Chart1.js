@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import Chart from 'react-apexcharts';
-import styled from 'styled-components';
   
-const Styles = styled.div``;
 
 
 const Chart1 = () => {
     
     const opt = {
         chart: {
+            toolbar: {
+            show: false
+            },
             color:'rgb(255,0,0, 0.5)',
             foreColor:'#777',
             type: 'area',
@@ -34,9 +35,7 @@ const Chart1 = () => {
           yaxis: {
             opposite: true
         },
-          legend: {
-            horizontalAlign: 'left'
-        },
+          
         colors:['#F44336']
     }
     const ser = [{
@@ -51,7 +50,7 @@ const Chart1 = () => {
            options={options}
            series={series}
            type="area" 
-           height={200}
+           height={250}
         />
     )
 }

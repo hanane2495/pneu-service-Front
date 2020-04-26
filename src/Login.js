@@ -9,12 +9,6 @@ import background from './assets/background1.jpg'
 //components
 import FooterPage from './Components/Footer';
 
-//functions 
-import fakeAuth from './Components/Navbar'
-
-
-//icons
-import { FaUserAlt } from "react-icons/fa";
 
 const Styles = styled.div`
 .background{

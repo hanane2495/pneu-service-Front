@@ -1,11 +1,11 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 
 const Styles = styled.div`
  height:100%;
-  .pub-layout{
+  .commande-layout{
     display: grid;
     height:100%;
     grid-template-areas:
@@ -16,7 +16,7 @@ const Styles = styled.div`
      padding:1% 1% 0 2% ;
      transition:0.9s;
   }
-  .titre-pub{
+  .titre-Commande{
     grid-area: title-com;
     justify-content:center;
     justify-items:center;
@@ -24,7 +24,7 @@ const Styles = styled.div`
     padding:0 1.5%;
     padding-left:0;
   }
-  .pub{
+  .table-commandes{
     grid-area: table-com;
     justify-content:center;
     justify-items:center;
@@ -33,7 +33,7 @@ const Styles = styled.div`
     padding-left:0;
 
   }
-  .card-pub{
+  .card-commandes{
       display:flex;
       flex-direction: row;
       justify-content:left;
@@ -44,24 +44,24 @@ const Styles = styled.div`
       border-radius:10px;
       box-shadow:5px 10px 20px 1px rgba(0, 0, 0, 0.153);
   }
-  
 `;
 
 
-const Pub = () => {
-
+const AddUser = () => {
     return(
         <React.Fragment>
             <Styles>
-            <div className='pub-layout'>
-                <div className='titre-pub'>
-                    <Card className='card-pub'>
-                        <p style={{fontSize:'1.2rem', fontWeight:'500', color:'#999', marginTop:'0.5%'}}>Mes Publicites</p>
+            <div className='commande-layout'>
+                <div className='titre-Commande'>
+                    <Card className='card-commandes'>
+                    
+                        <p style={{fontSize:'1.2rem', fontWeight:'500', color:'#999', marginTop:'0.5%'}}>Créer un nouvel utilisateur</p>
+                        
                     </Card>
                 </div>
-                <div className='pub'>
-                    <Card className='card-pub'>
-                            je suis pub
+                <div className='table-commandes'>
+                    <Card className='card-commandes'>
+                        this is table
                     </Card>
                 </div>        
             </div>
@@ -72,4 +72,4 @@ const Pub = () => {
     )
 }
 
-export default Pub;
+export default AddUser;

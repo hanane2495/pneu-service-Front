@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import {  MDBContainer, MDBRow, MDBFooter, MDBInput, MDBBtn, MDBIcon } from "mdbreact";
+import {  MDBContainer, MDBFooter} from "mdbreact";
 import styled from 'styled-components';
 
 
 //icons 
-import { FaFacebookF, FaInstagram, FaLinkedin, FaPhone, FaTwitter } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 
 const Styles = styled.div`

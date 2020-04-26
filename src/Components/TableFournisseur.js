@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MaterialTable from 'material-table';
 
+//icons
 import Search from "@material-ui/icons/Search"
  import ViewColumn from "@material-ui/icons/ViewColumn"
  import SaveAlt from "@material-ui/icons/SaveAlt"
@@ -15,39 +16,36 @@ import Search from "@material-ui/icons/Search"
  import EditIcon from '@material-ui/icons/Edit';
  import ClearIcon from '@material-ui/icons/Clear';
  import SaveIcon from '@material-ui/icons/Save';
+ import StoreIcon from '@material-ui/icons/Store';
+ import AccountTreeIcon from '@material-ui/icons/AccountTree';
 
-const TableCommande = () => {
+ //components
+ import MyVerticallyCenteredModal from './ModalMapping';
+ import MyVerticallyCenteredModalStock from './ModalStock';
+
+const TableFournisseur = () => {
+
+    const [modalShowStock, setModalShowStock] = React.useState(false);
+    const [modalShow, setModalShow] = React.useState(false);
+    const [Fournisseur, setFournisseur] = React.useState('');
+
     const [state, setState] = React.useState({
         columns: [
           { title: 'Code', field: 'code' },
-          { title: 'Client', field: 'client' },
-          { title: 'Montant (Da)', field: 'montant', type: 'numeric' },
-          { title: 'Produits [code]', field: 'produits' },
-          { title: 'Qt', field: 'qt' },
-          { title: 'Etat', field: 'etat', lookup: { 34: 'livree', 63: 'en attente' }},
-
+          { title: 'Fournisseur', field: 'fournisseur' },
+          { title: 'Telephone', field: 'telephone'},
+          { title: 'Adresse', field: 'adresse' },
         ],
         data: [
-          { code: 'cc6225', client: 'Baran', montant: 16000, produits: '195R14C, 195R14C, 195R14C', qt:4, etat:63 },
-          { code: 'cc6225', client: 'Baran', montant: 16000, produits: '195R14C, 195R14C, 195R14C', qt:4, etat:63},
-          { code: 'cc6225', client: 'Baran', montant: 16000, produits: '195R14C, 195R14C, 195R14C', qt:4, etat:63 },
-          { code: 'cc6225', client: 'Baran', montant: 16000, produits: '195R14C, 195R14C, 195R14C', qt:4, etat:63 },
-          { code: 'cc6225', client: 'Baran', montant: 16000, produits: '195R14C, 195R14C, 195R14C', qt:4, etat:34 },
-          { code: 'cc6225', client: 'Baran', montant: 16000, produits: '195R14C, 195R14C, 195R14C', qt:4, etat:34 },
-          {
-            code: 'cc6225',
-            client: 'Baran',
-            montant: 16000,
-            produits: '195R14C, 195R14C, 195R14C',
-            qt:4,
-            etat:34
-          },
+          { code: 'F001', fournisseur: 'Baran', telephone: '05 57 93 20 82', adresse: ''  },
+          { code: 'F002', fournisseur: 'Baran', telephone: '05 57 93 20 82', adresse: '' },
         ],
       });
       return (
+         <React.Fragment> 
         <MaterialTable
           style={{width:'100%', height:'100%'}}
-          title="Liste des commandes"
+          title="Liste des Fournisseurs"
           icons={{
             Check: () => <Check />,
             Export: () => <SaveAlt />,
@@ -70,25 +68,19 @@ const TableCommande = () => {
           data={state.data}
           actions={[
             {
-              icon: () => <SaveAlt />,
-              tooltip: 'Telecharger',
-              onClick: (event, rowData) => alert("You saved " + rowData.name)
+                icon: () => <StoreIcon />,
+                tooltip: 'Stock',
+                onClick: (event, rowData) => {setModalShowStock(true); setFournisseur(rowData.code); console.log( rowData.code )}
             },
             {
-                icon: () => <DeleteIcon />,
-                tooltip: 'Telecharger',
-                onClick: (event, rowData) => alert("You saved " + rowData.name)
-            },
-            {
-                icon: ()=><EditIcon/>,
-                tooltip: 'Telecharger',
-                onClick: (event, rowData) => alert("You saved " + rowData.name)
+                icon: ()=><AccountTreeIcon/>,
+                tooltip: 'Mapping',
+                onClick: (event, rowData) => {setModalShow(true); setFournisseur(rowData.code); console.log( rowData.code )}
             }
 
           ]}
           options={{
             actionsColumnIndex: -1,
-            selection: true
           }}
           components={{
             Container: props => <div style={{background: 'none'}}>{props.children}</div>
@@ -131,7 +123,18 @@ const TableCommande = () => {
               }),
           }}
         />
+        <MyVerticallyCenteredModalStock
+            show={modalShowStock}
+            onHide={() => setModalShowStock(false)}
+            fournisseur = {Fournisseur}
+        />
+        <MyVerticallyCenteredModal
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+            fournisseur = {Fournisseur}
+        />
+      </React.Fragment>
     );
 
 }      
-export default TableCommande;
+export default TableFournisseur;

@@ -15,39 +15,38 @@ import Search from "@material-ui/icons/Search"
  import EditIcon from '@material-ui/icons/Edit';
  import ClearIcon from '@material-ui/icons/Clear';
  import SaveIcon from '@material-ui/icons/Save';
+ import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 
-const TableCommande = () => {
+
+const TablePneu = () => {
     const [state, setState] = React.useState({
         columns: [
-          { title: 'Code', field: 'code' },
-          { title: 'Client', field: 'client' },
-          { title: 'Montant (Da)', field: 'montant', type: 'numeric' },
-          { title: 'Produits [code]', field: 'produits' },
-          { title: 'Qt', field: 'qt' },
-          { title: 'Etat', field: 'etat', lookup: { 34: 'livree', 63: 'en attente' }},
-
+          { title: 'ID pneu', field: 'id_pneu' },
+          { title: 'Designation', field: 'designation' },
+          { title: 'Marque', field: 'marque' },
+          { title: 'Collection', field: 'collection' },
+          { title: 'Type', field: 'type' },
+          { title: 'Largeur', field: 'largeur' },
+          { title: 'Hauteur', field: 'hauteur' },
+          { title: 'Diametre', field: 'diametre' },
+          { title: 'Charge', field: 'charge' },
+          { title: 'Vitesse', field: 'vitesse' },
+          { title: 'Marge', field: 'marge' },
         ],
         data: [
-          { code: 'cc6225', client: 'Baran', montant: 16000, produits: '195R14C, 195R14C, 195R14C', qt:4, etat:63 },
-          { code: 'cc6225', client: 'Baran', montant: 16000, produits: '195R14C, 195R14C, 195R14C', qt:4, etat:63},
-          { code: 'cc6225', client: 'Baran', montant: 16000, produits: '195R14C, 195R14C, 195R14C', qt:4, etat:63 },
-          { code: 'cc6225', client: 'Baran', montant: 16000, produits: '195R14C, 195R14C, 195R14C', qt:4, etat:63 },
-          { code: 'cc6225', client: 'Baran', montant: 16000, produits: '195R14C, 195R14C, 195R14C', qt:4, etat:34 },
-          { code: 'cc6225', client: 'Baran', montant: 16000, produits: '195R14C, 195R14C, 195R14C', qt:4, etat:34 },
-          {
-            code: 'cc6225',
-            client: 'Baran',
-            montant: 16000,
-            produits: '195R14C, 195R14C, 195R14C',
-            qt:4,
-            etat:34
-          },
+          { id_pneu: '712', designation: 'Michelin Latitude Sport 3 275/45 R19 108Y', marque: 'Vredestein', collection: 'V48', type:'PNT', largeur:'21', hauteur:'8', diametre:'10', charge:'96', vitesse:'M', marge:'0' },
+          { id_pneu: '712', designation: 'Michelin Latitude Sport 3 275/45 R19 108Y', marque: 'Vredestein', collection: 'V48', type:'PNT', largeur:'21', hauteur:'8', diametre:'10', charge:'96', vitesse:'M', marge:'0' },
+          { id_pneu: '712', designation: 'Michelin Latitude Sport 3 275/45 R19 108Y', marque: 'Vredestein', collection: 'V48', type:'PNT', largeur:'21', hauteur:'8', diametre:'10', charge:'96', vitesse:'M', marge:'0' },
+          { id_pneu: '712', designation: 'Michelin Latitude Sport 3 275/45 R19 108Y', marque: 'Vredestein', collection: 'V48', type:'PNT', largeur:'21', hauteur:'8', diametre:'10', charge:'96', vitesse:'M', marge:'0' },
+          { id_pneu: '712', designation: 'Michelin Latitude Sport 3 275/45 R19 108Y', marque: 'Vredestein', collection: 'V48', type:'PNT', largeur:'21', hauteur:'8', diametre:'10', charge:'96', vitesse:'M', marge:'0' },
+          { id_pneu: '712', designation: 'Michelin Latitude Sport 3 275/45 R19 108Y', marque: 'Vredestein', collection: 'V48', type:'PNT', largeur:'21', hauteur:'8', diametre:'10', charge:'96', vitesse:'M', marge:'0' },
+          
         ],
       });
       return (
         <MaterialTable
           style={{width:'100%', height:'100%'}}
-          title="Liste des commandes"
+          title=""
           icons={{
             Check: () => <Check />,
             Export: () => <SaveAlt />,
@@ -69,19 +68,10 @@ const TableCommande = () => {
           columns={state.columns}
           data={state.data}
           actions={[
+            
             {
-              icon: () => <SaveAlt />,
-              tooltip: 'Telecharger',
-              onClick: (event, rowData) => alert("You saved " + rowData.name)
-            },
-            {
-                icon: () => <DeleteIcon />,
-                tooltip: 'Telecharger',
-                onClick: (event, rowData) => alert("You saved " + rowData.name)
-            },
-            {
-                icon: ()=><EditIcon/>,
-                tooltip: 'Telecharger',
+                icon: ()=><LocalOfferIcon/>,
+                tooltip: 'Ajouter promo',
                 onClick: (event, rowData) => alert("You saved " + rowData.name)
             }
 
@@ -90,9 +80,6 @@ const TableCommande = () => {
             actionsColumnIndex: -1,
             selection: true
           }}
-          components={{
-            Container: props => <div style={{background: 'none'}}>{props.children}</div>
-            }}
           editable={{
             onRowAdd: (newData) =>
               new Promise((resolve) => {
@@ -134,4 +121,4 @@ const TableCommande = () => {
     );
 
 }      
-export default TableCommande;
+export default TablePneu;

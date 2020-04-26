@@ -7,7 +7,7 @@ import './App.css';
 
 
 //icon
-import { FaHome, FaShoppingCart, FaTruck, FaWarehouse, FaSitemap, FaBullhorn } from 'react-icons/fa';
+import { FaHome, FaShoppingCart, FaTruck, FaBullhorn } from 'react-icons/fa';
 import { GiCarWheel, GiAutoRepair } from "react-icons/gi";
 
 
@@ -21,9 +21,8 @@ import Pneus from './Pneus'
 import Publicite from './Publicite'
 import Navbar from './Components/Navbar'
 import Aside from './Components/Aside'
-
-//functions 
-import fakeAuth from './Components/Navbar'
+import Profile from './Profile'
+import AddUser from './AddUser'
 
 //styled components 
 const Styles =styled.div`
@@ -31,10 +30,10 @@ const Styles =styled.div`
     height: 100vh;
     display: grid;
     grid-template-areas:
-      'asideLeft nav nav'
-      'asideLeft main asideRight';
+      'asideLeft nav'
+      'asideLeft main';
     grid-template-rows: 15% 85%;
-    grid-template-columns: 18% 74% 8%;
+    grid-template-columns: 18% 82%;
     transition:  0.9s ;
     -moz-transition:  0.9s ; /* Firefox 4 */
     -webkit-transition:  0.9s ; /* Safari 和 Chrome */
@@ -49,22 +48,7 @@ const Styles =styled.div`
         'asideLeft nav nav'
         'asideLeft main asideRight';
      grid-template-rows: 15% 85%;
-     grid-template-columns: 5% 75% 20%;
-     transition:  0.9s ;
-    -moz-transition:  0.9s ; /* Firefox 4 */
-    -webkit-transition: 0.9s ; /* Safari 和 Chrome */
-    -o-transition: 0.9s ; /* Opera */
-     background:#fff;
-     }
-     .main-toggled{
-      height: 100vh;
-      display: grid;
-      justify-self:center;
-      grid-template-areas:
-        'asideLeft nav nav'
-        'asideLeft main asideRight';
-     grid-template-rows: 15% 85%;
-     grid-template-columns: 5% 87% 8%;
+     grid-template-columns: 5% 95%;
      transition:  0.9s ;
     -moz-transition:  0.9s ; /* Firefox 4 */
     -webkit-transition: 0.9s ; /* Safari 和 Chrome */
@@ -82,10 +66,6 @@ const AsideLeft = styled.aside`
   grid-area: asideLeft;
   
 `;
-const AsideRight = styled.aside`
-  grid-area: asideRight;
-  height:100%;
-`;
 const Main = styled.main`
   grid-area: main;
   height:100%;
@@ -94,25 +74,7 @@ const Main = styled.main`
 
 
 function App() {
-
-  const mainToggle = (toggle) => {
-    setToggleMain(!toggleMain)
-    console.log('main toggle clicked');
-    const Mygrid = document.getElementById('Mygrid');
-    console.log(Mygrid.className)
-    
-    if(Mygrid.className=='grid-layout' ){
-      Mygrid.classList.replace('grid-layout','main-toggled');
-      console.log(Mygrid.className)
-    }else{
-      Mygrid.classList.replace('main-toggled' ,'grid-layout');
-      console.log(Mygrid.className)
-  }
-  
-  }
-  
   const [toggled, setToggled] = useState(false);
-  const [toggleMain, setToggleMain] = useState(false)
 
   return (
     <Router basename='/'>
@@ -137,7 +99,7 @@ function App() {
                                                             const Mygrid = document.getElementById('Mygrid');
                                                             console.log(Mygrid.className)
                                                             
-                                                            if(Mygrid.className=='grid-layout' ){
+                                                            if(Mygrid.className ==='grid-layout' ){
                                                               Mygrid.classList.replace('grid-layout','toggle-grid-layout');
                                                               console.log(Mygrid.className)
                                                             }else{
@@ -203,17 +165,16 @@ function App() {
                    </Nav>
                    <Main>
                       <main style={{height:'100%'}}>
-                          <Route  path='/Acceuil' component={props => <Acceuil />}/>
-                          <Route  path='/Commandes' component={props =><Commande parentCallback={mainToggle}/>}/>
-                          <Route  path='/Fournisseurs' component={props =><Fournisseurs/>}/>
-                          <Route  path='/Centres_de_montages' component={props =><CentreMontage/>}/>
-                          <Route  path='/Pneus' component={props =><Pneus/>}/>
-                          <Route  path='/Publicite' component={props =><Publicite/>}/>
+                          <Route  path='/Acceuil' component={props => <Acceuil closed={toggled}/>}/>
+                          <Route  path='/Commandes' component={props =><Commande />}/>
+                          <Route  path='/Fournisseurs' component={props =><Fournisseurs />}/>
+                          <Route  path='/Centres_de_montages' component={props =><CentreMontage />}/>
+                          <Route  path='/Pneus' component={props =><Pneus />}/>
+                          <Route  path='/Publicite' component={props =><Publicite />}/>
+                          <Route  path='/Profile' component={props =><Profile />}/>
+                          <Route  path='/Ajouter_Utilisateur' component={props =><AddUser />}/>
                       </main> 
                    </Main>
-                   <AsideRight>
-                     <Aside closed={toggled} mainClosed={toggleMain} />
-                   </AsideRight>
               </div>     
           </Styles>
         </React.Fragment>
